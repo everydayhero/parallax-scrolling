@@ -42,31 +42,7 @@ function parallaxInit(elementId, background, scrollDirectionX, scrollDirectionY,
     // Apply to div
     obj.style.backgroundImage = "url('"+background+"')";
 
-
-    // Is this image using "cover"? Set the background to the right ratio.
-    var style = window.getComputedStyle(obj),
-        bgSize = style.getPropertyValue('background-size');
-
-    if (bgSize=='cover') {
-      // Get the ratio of the div & the image
-      var imageRatio = backgroundWidth / backgroundHeight,
-          coverRatio = containerWidth / containerHeight;
-
-      // Work out which ratio is greater
-      if (imageRatio >= coverRatio) {
-        var coverHeight = containerHeight,
-            scale = (coverHeight / backgroundHeight),
-            coverWidth = backgroundWidth * scale;
-      } else {
-        var coverWidth = containerWidth,
-            scale = (coverWidth / backgroundWidth),
-            coverHeight = backgroundHeight * scale;
-      }
-
-      backgroundWidth = coverWidth;
-      backgroundHeight = coverHeight;
-    }
-
+    // Output arguments to global variable
     parallaxArgs[elementId] = [];
     parallaxArgs[elementId]['backgroundWidth'] = backgroundWidth;
     parallaxArgs[elementId]['backgroundHeight'] = backgroundHeight;
@@ -111,6 +87,31 @@ function parallaxScroll(elementId) {
   containerBottom = containerTop + containerHeight,
   containerLeft = obj.offsetLeft,
   containerRight = containerLeft + containerWidth;
+
+
+  // Is this image using "cover"? Set the background to the right ratio.
+  var style = window.getComputedStyle(obj),
+      bgSize = style.getPropertyValue('background-size');
+
+  if (bgSize=='cover') {
+    // Get the ratio of the div & the image
+    var imageRatio = paramsArr['backgroundWidth'] / paramsArr['backgroundHeight'],
+        coverRatio = containerWidth / containerHeight;
+
+    // Work out which ratio is greater
+    if (imageRatio >= coverRatio) {
+      var coverHeight = containerHeight,
+          scale = (coverHeight / paramsArr['backgroundHeight']),
+          coverWidth = paramsArr['backgroundWidth'] * scale;
+    } else {
+      var coverWidth = containerWidth,
+          scale = (coverWidth / paramsArr['backgroundWidth']),
+          coverHeight = paramsArr['backgroundHeight'] * scale;
+    }
+
+    paramsArr['backgroundWidth'] = coverWidth;
+    paramsArr['backgroundHeight'] = coverHeight;
+  }
 
 
   // Calculate the HORIZONTAL background position
