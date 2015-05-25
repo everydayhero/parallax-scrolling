@@ -19,7 +19,8 @@ Vanilla JS parallax scrolling function
 
 
 ## Browser Support:
-IE9+, Chrome, Firefox, Safari, Opera (Should support IE8 as well, but this is untested).
+IE9+, Chrome, Firefox, Safari, Opera
+(Should support IE8 as well, but this is untested)
 
 
 ## Known Bugs:
