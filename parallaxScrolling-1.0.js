@@ -115,7 +115,7 @@ function parallaxScroll(elementId) {
 
   // Calculate the HORIZONTAL background position
   var xPos = 0;
-  if (scrollRight >= containerLeft && scrollLeft <= containerRight && (paramsArr['maxOffsetX'] > 0 || paramsArr['maxOffsetX'] == 'auto')) {
+  if (scrollRight >= containerLeft && scrollLeft <= containerRight && (paramsArr['maxOffsetX'] != 0 || paramsArr['maxOffsetX'] == 'auto')) {
     var percentageOfTotalScroll = 100 - (((containerRight - scrollLeft) / containerRight) * 100);
 
     if (paramsArr['scrollDirectionX'] == 'up') {
@@ -131,7 +131,7 @@ function parallaxScroll(elementId) {
 
   // Calculate the VERTICAL background position
   var yPos = 0;
-  if (scrollBottom >= containerTop && scrollTop <= containerBottom && (paramsArr['maxOffsetY'] > 0 || paramsArr['maxOffsetY'] == 'auto')) {
+  if (scrollBottom >= containerTop && scrollTop <= containerBottom && (paramsArr['maxOffsetY'] != 0 || paramsArr['maxOffsetY'] == 'auto')) {
     var percentageOfTotalScroll = 100 - (((containerBottom - scrollTop) / containerBottom) * 100);
 
     if (paramsArr['scrollDirectionY']=='up') {
