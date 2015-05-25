@@ -1,5 +1,5 @@
 # Parallax-Scrolling
-Vanilla JS parallax scrolling function for CSS backgrounds. Will scroll a background applied to a div.
+Vanilla JS parallax scrolling function for CSS backgrounds. Will scroll a background applied to a div. By default, it uses the maximum amount of overflowing pixels and evenly distrubutes them across the entire scroll duration (defined by when the containing div is in the viewport).
 
 
 ## Version:
