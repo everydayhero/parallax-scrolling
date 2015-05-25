@@ -44,14 +44,13 @@ CSS
 
 JS (add this as the last thing on the page)
 ```
-function doParallax() {
-  var pos = parallaxScroll('header');
-  document.getElementById('header').style.backgroundPosition = (pos[0]+'px '+pos[1]+'px');
-}
-
 var parallaxArgs = []; // Required global variable
 parallaxInit('header', 'img/banner.jpg');
 
+
+function doParallax() {
+  parallaxScroll('header');
+}
 window.onscroll = doParallax;
 window.onresize = doParallax;
 ```

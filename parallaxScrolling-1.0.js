@@ -50,6 +50,9 @@ function parallaxInit(elementId, background, scrollDirectionX, scrollDirectionY,
     parallaxArgs[elementId]['scrollDirectionY'] = scrollDirectionY;
     parallaxArgs[elementId]['maxOffsetX'] = maxOffsetX;
     parallaxArgs[elementId]['maxOffsetY'] = maxOffsetY;
+
+    // Trigger the scroll
+    parallaxScroll(elementId);
   }
 
 }
@@ -145,6 +148,6 @@ function parallaxScroll(elementId) {
     yPos = totalOffset * (percentageOfTotalScroll / 100);
   }
 
-
-  return [xPos, yPos];
+  // Apply the background position
+  obj.style.backgroundPosition = (xPos+'px '+yPos+'px');
 }
