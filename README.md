@@ -9,8 +9,7 @@ Vanilla JS parallax scrolling function for CSS backgrounds. Will scroll a backgr
 ## Params:
 ```
 - elementId (str): The element's ID.
-- backgroundWidth (int): Background image's width in pixels.
-- backgroundHeight (int): Background image's height in pixels.
+- background (str): Path to the background image.
 - scrollDirectionX (str): Optional. Set to either "left" or "right" to specify horizontal scroll direction.
 - scrollDirectionY (str): Optional. Set to either "up" or "down" to specify vertical scroll direction.
 - maxOffsetX (int): Optional. Max number of pixels the background can move horizontally. Set this to 0 to disable horizontal scrolling.
@@ -36,7 +35,6 @@ HTML
 CSS
 ```
 #header {
-  background: url('img/example.jpg') no-repeat;
   background-size: cover; /* This property is supported. Sick lad. */
 
   width: 1024px;
@@ -47,11 +45,13 @@ CSS
 JS (add this as the last thing on the page)
 ```
 function doParallax() {
-  var pos = parallaxScroll('header', 1024, 768);
+  var pos = parallaxScroll('header');
   document.getElementById('header').style.backgroundPosition = (pos[0]+'px '+pos[1]+'px');
 }
 
-doParallax();
+var parallaxArgs = []; // Required global variable
+parallaxInit('header', 'img/banner.jpg');
+
 window.onscroll = doParallax;
 window.onresize = doParallax;
 ```
