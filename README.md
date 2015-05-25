@@ -1,5 +1,5 @@
 # Parallax-Scrolling
-Vanilla JS parallax scrolling function
+Vanilla JS parallax scrolling function for CSS backgrounds. Will scroll a background applied to a div.
 
 
 ## Version:
