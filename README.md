@@ -12,8 +12,8 @@ Vanilla JS parallax scrolling function for CSS backgrounds. Will scroll a backgr
 - background (str): Path to the background image.
 - scrollDirectionX (str): Optional. Set to either "left" or "right" to specify horizontal scroll direction.
 - scrollDirectionY (str): Optional. Set to either "up" or "down" to specify vertical scroll direction.
-- maxOffsetX (int): Optional. Max number of pixels the background can move horizontally. Set this to 0 to disable horizontal scrolling.
-- maxOffsetY (int): Optional. Max number of pixels the background can move vertically. Set this to 0 to disable vertical scrolling.
+- maxOffsetX (int): Optional. Max number of pixels the background can move horizontally. By default it will use all available overflowing pixels. Set this to 0 to disable horizontal scrolling.
+- maxOffsetY (int): Optional. Max number of pixels the background can move vertically. By default it will use all available overflowing pixels. Set this to 0 to disable vertical scrolling.
 ```
 
 
