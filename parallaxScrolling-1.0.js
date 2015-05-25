@@ -71,7 +71,7 @@ function parallaxScroll(elementId, backgroundWidth, backgroundHeight, scrollDire
 
   // Calculate the HORIZONTAL background position
   var xPos = 0;
-  if (scrollRight >= containerLeft && scrollLeft <= containerRight) {
+  if (scrollRight >= containerLeft && scrollLeft <= containerRight && maxOffsetX > 0) {
     var percentageOfTotalScroll = 100 - (((containerRight - scrollLeft) / containerRight) * 100);
 
     if (scrollDirectionX=='up') {
@@ -87,7 +87,7 @@ function parallaxScroll(elementId, backgroundWidth, backgroundHeight, scrollDire
 
   // Calculate the VERTICAL background position
   var yPos = 0;
-  if (scrollBottom >= containerTop && scrollTop <= containerBottom) {
+  if (scrollBottom >= containerTop && scrollTop <= containerBottom && maxOffsetY > 0) {
     var percentageOfTotalScroll = 100 - (((containerBottom - scrollTop) / containerBottom) * 100);
 
     if (scrollDirectionY=='up') {
