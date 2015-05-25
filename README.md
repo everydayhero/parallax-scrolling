@@ -37,7 +37,7 @@ CSS
 ```
 #header {
   background: url('img/example.jpg') no-repeat;
-  background-size: cover;
+  background-size: cover; /* This property is supported. Sick lad. */
 
   width: 1024px;
   height: 400px;
