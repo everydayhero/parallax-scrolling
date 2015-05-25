@@ -1,8 +1,10 @@
 # Parallax-Scrolling
 Vanilla JS parallax scrolling function
 
+
 ## Version:
 1.0
+
 
 ## Params:
 ```
@@ -15,11 +17,14 @@ Vanilla JS parallax scrolling function
 - maxOffsetY (int): Optional. Max number of pixels the background can move vertically. Set this to 0 to disable vertical scrolling.
 ```
 
+
 ## Browser Support:
 IE9+, Chrome, Firefox, Safari, Opera (Should support IE8 as well, but this is untested).
 
+
 ## Known Bugs:
 The scroll event on mobile only returns after it stops scrolling. Possible fix: https://filipbech.github.io/2013/07/smooth-parallax-scrolling-on-ios-with/
+
 
 ## Example Usage:
 HTML
