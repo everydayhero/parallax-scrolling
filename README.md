@@ -62,6 +62,9 @@ parallax.init(id, src, scrollDir, maxOffset);
 var el = document.getElementById(id);
 
 // Event listeners
+window.addEventListener('load', function() {
+  el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
+});
 window.addEventListener('scroll', function() {
   el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
 });
@@ -84,10 +87,12 @@ var parallax = new Parallax();
 parallax.init(id, src, scrollDir, maxOffset);
 
 // Event listeners
+$(document).ready(function() {
+  $('#'+id).css('backgroundPosition', ('0 '+parallaxHeader.scroll()+'px'));
+});
 $(window).scroll(function() {
   $('#'+id).css('backgroundPosition', ('0 '+parallaxHeader.scroll()+'px'));
 });
-
 $(window).resize(function() {
   $('#'+id).css('backgroundPosition', ('0 '+parallaxHeader.resize()+'px'));
 });

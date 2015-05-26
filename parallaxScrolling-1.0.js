@@ -16,7 +16,9 @@
     this.init = function(id, src, scrollDir, maxOffset) {
 
       // Make sure it only fires once
-      if (initialised) { return; }
+      if (initialised) {
+        return;
+      }
 
       // Set optional params
       scrollDir = scrollDir || 'down';
@@ -63,82 +65,82 @@
 
 
     this.scroll = function() {
-      // If the images aren't loaded yet, the args var won't be set so return false
-      if (Object.keys(params).length === 0) {
-        return false;
-      } else {
-        // Setup state variables
-        var scrollTop = state.w.pageYOffset || state.e.scrollTop;
-        var scrollBottom = state.scrollTop + state.windowHeight;
+      // Make sure the init function has fired
+      if (!initialised) {
+        return;
+      }
 
-        // Add variables to state
-        state.scrollTop = scrollTop;
-        state.scrollBottom = scrollBottom;
+      // Setup state variables
+      var scrollTop = state.w.pageYOffset || state.e.scrollTop;
+      var scrollBottom = state.scrollTop + state.windowHeight;
 
-        // Calculate the VERTICAL background position
-        var yPos = 0;
-        if (state.scrollBottom >= state.containerTop && state.scrollTop <= state.containerBottom && (params.maxOffset != 0 || params.maxOffset === 'auto')) {
-          var percentageOfTotalScroll = 100 - (((state.containerBottom - state.scrollTop) / state.containerBottom) * 100);
+      // Add variables to state
+      state.scrollTop = scrollTop;
+      state.scrollBottom = scrollBottom;
 
-          if (params.scrollDir === 'up') {
-            percentageOfTotalScroll = 100 - percentageOfTotalScroll;
-          }
-          var totalOffset = state.containerHeight - state.backgroundHeight;
-          if (params.maxOffset != 'auto' && totalOffset < params.maxOffset) {
-            totalOffset = params.maxOffset;
-          }
+      // Calculate the VERTICAL background position
+      var yPos = 0;
+      if (state.scrollBottom >= state.containerTop && state.scrollTop <= state.containerBottom && (params.maxOffset != 0 || params.maxOffset === 'auto')) {
+        var percentageOfTotalScroll = 100 - (((state.containerBottom - state.scrollTop) / state.containerBottom) * 100);
 
-          yPos = totalOffset * (percentageOfTotalScroll / 100);
+        if (params.scrollDir === 'up') {
+          percentageOfTotalScroll = 100 - percentageOfTotalScroll;
+        }
+        var totalOffset = state.containerHeight - state.backgroundHeight;
+        if (params.maxOffset != 'auto' && totalOffset < params.maxOffset) {
+          totalOffset = params.maxOffset;
         }
 
-        return yPos;
+        yPos = totalOffset * (percentageOfTotalScroll / 100);
       }
+
+      return yPos;
     };
 
 
 
     this.resize = function() {
-      // If the images aren't loaded yet, the args var won't be set so return false
-      if (Object.keys(params).length === 0) {
-        return false;
-      } else {
-        // Add variables to state
-        state.windowHeight = state.w.innerHeight || state.e.clientHeight || state.g.clientHeight;
-        state.windowWidth = state.w.innerWidth || state.e.clientWidth || state.g.clientWidth;
-        state.containerWidth = state.el.offsetWidth;
-        state.containerHeight = state.el.offsetHeight;
-        state.containerTop = state.el.offsetTop;
-        state.containerBottom = state.containerTop + state.containerHeight;
+      // Make sure the init function has fired
+      if (!initialised) {
+        return;
+      }
 
-        // Is this image using "cover"? Set the background to the right ratio.
-        var style = state.w.getComputedStyle(state.el);
-        var bgSize = style.getPropertyValue('background-size');
+      // Add variables to state
+      state.windowHeight = state.w.innerHeight || state.e.clientHeight || state.g.clientHeight;
+      state.windowWidth = state.w.innerWidth || state.e.clientWidth || state.g.clientWidth;
+      state.containerWidth = state.el.offsetWidth;
+      state.containerHeight = state.el.offsetHeight;
+      state.containerTop = state.el.offsetTop;
+      state.containerBottom = state.containerTop + state.containerHeight;
 
-        if (bgSize === 'cover') {
-          // Get the ratio of the div & the image
-          var imageRatio = state.backgroundWidth / state.backgroundHeight;
-          var coverRatio = state.containerWidth / state.containerHeight;
+      // Is this image using "cover"? Set the background to the right ratio.
+      var style = state.w.getComputedStyle(state.el);
+      var bgSize = style.getPropertyValue('background-size');
 
-          // Work out which ratio is greater
-          if (imageRatio >= coverRatio) {
-            var coverHeight = state.containerHeight;
-            var scale = (coverHeight / state.backgroundHeight);
-            var coverWidth = state.backgroundWidth * scale;
-          } else {
-            var coverWidth = state.containerWidth;
-            var scale = (coverWidth / state.backgroundWidth);
-            var coverHeight = state.backgroundHeight * scale;
-          }
+      if (bgSize === 'cover') {
+        // Get the ratio of the div & the image
+        var imageRatio = state.backgroundWidth / state.backgroundHeight;
+        var coverRatio = state.containerWidth / state.containerHeight;
 
-          // Add variables to state
-          state.backgroundWidth = coverWidth;
-          state.backgroundHeight = coverHeight;
+        // Work out which ratio is greater
+        if (imageRatio >= coverRatio) {
+          var coverHeight = state.containerHeight;
+          var scale = (coverHeight / state.backgroundHeight);
+          var coverWidth = state.backgroundWidth * scale;
+        } else {
+          var coverWidth = state.containerWidth;
+          var scale = (coverWidth / state.backgroundWidth);
+          var coverHeight = state.backgroundHeight * scale;
         }
 
-
-        // Call scroll function
-        return self.scroll();
+        // Add variables to state
+        state.backgroundWidth = coverWidth;
+        state.backgroundHeight = coverHeight;
       }
+
+
+      // Call scroll function
+      return self.scroll();
     };
 
 

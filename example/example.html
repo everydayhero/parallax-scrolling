@@ -33,6 +33,9 @@
 
     var el = document.getElementById("banner");
 
+    window.addEventListener('load', function() {
+      el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
+    });
     window.addEventListener('scroll', function() {
       el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
     });
