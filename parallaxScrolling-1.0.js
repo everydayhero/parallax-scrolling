@@ -9,7 +9,7 @@
     // Init function
     // ------------------------------------------------
     // id (str): Required. ID of DOM element.
-    // src (str): Required. ID of DOM element.
+    // src (str): Required. Source of background image.
     // scrollDir (str): Optional. Scroll direction can be either "down" or "up". Default is "down".
     // maxOffset (int): Optional. Max number of pixels the background can move vertically. By default it will use all available overflowing pixels.
     this.init = function(id, src, scrollDir, maxOffset) {
