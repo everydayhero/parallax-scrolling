@@ -47,6 +47,8 @@ CSS
 
 JS
 ```
+// Vanilla JS Example
+// -------------------------------------------------------------
 // Config
 var id = "banner"; // (str): Required. ID of DOM element.
 var src = banner.jpg; // (str): Required. Source of background image.
@@ -64,5 +66,28 @@ window.addEventListener('scroll', function() {
 });
 window.addEventListener('resize', function() {
   el.style.backgroundPosition = ('0 '+parallax.resize()+'px');
+});
+
+
+
+// jQuery Example
+// -------------------------------------------------------------
+// Config
+var id = "banner"; // (str): Required. ID of DOM element.
+var src = banner.jpg; // (str): Required. Source of background image.
+var scrollDir = "down"; // (str): Optional. Scroll direction can be either "down" or "up". Default is "down".
+var maxOffset = "auto"; // (int): Optional. Max number of pixels the background can move vertically. By default it will use all available overflowing pixels.
+
+// Init
+var parallax = new Parallax();
+parallax.init(id, src, scrollDir, maxOffset);
+
+// Event listeners
+$(window).scroll(function() {
+  $('#'+id).css('backgroundPosition', ('0 '+parallaxHeader.scroll()+'px'));
+});
+
+$(window).resize(function() {
+  $('#'+id).css('backgroundPosition', ('0 '+parallaxHeader.resize()+'px'));
 });
 ```
