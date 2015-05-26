@@ -75,7 +75,7 @@
 
   Parallax.prototype.scroll = function() {
     // If the images aren't loaded yet, the args var won't be set so return false
-    if (Object.keys(args).length==0) {
+    if (Object.keys(args).length === 0) {
       return false;
     } else {
       // Setup state variables
@@ -96,10 +96,10 @@
 
       // Calculate the VERTICAL background position
       var yPos = 0;
-      if (state.scrollBottom >= state.containerTop && state.scrollTop <= state.containerBottom && (params.maxOffset != 0 || params.maxOffset == 'auto')) {
+      if (state.scrollBottom >= state.containerTop && state.scrollTop <= state.containerBottom && (params.maxOffset != 0 || params.maxOffset === 'auto')) {
         var percentageOfTotalScroll = 100 - (((state.containerBottom - state.scrollTop) / state.containerBottom) * 100);
 
-        if (params.scrollDirectionY=='up') {
+        if (params.scrollDirectionY === 'up') {
           percentageOfTotalScroll = 100 - percentageOfTotalScroll;
         }
         var totalOffset = state.containerHeight - params.backgroundHeight;
@@ -117,7 +117,7 @@
 
   Parallax.prototype.resize = function() {
     // If the images aren't loaded yet, the args var won't be set so return false
-    if (Object.keys(args).length==0) {
+    if (Object.keys(args).length === 0) {
       return false;
     } else {
       // Setup state variables
@@ -128,7 +128,7 @@
       var style = state.w.getComputedStyle(state.el);
       var bgSize = style.getPropertyValue('background-size');
 
-      if (bgSize=='cover') {
+      if (bgSize === 'cover') {
         // Get the ratio of the div & the image
         var imageRatio = state.backgroundWidth / state.backgroundHeight;
         var coverRatio = state.containerWidth / state.containerHeight;
