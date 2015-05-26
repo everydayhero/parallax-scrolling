@@ -3,7 +3,7 @@ Vanilla JS parallax scrolling function for CSS backgrounds. Will scroll a backgr
 
 
 ## Demo:
-View [example.html](example.html) for a demo.
+Download and view [example.html](example.html) or visit http://d2h3g7rbnequ8a.cloudfront.net/parallax-scrolling/example.html
 
 
 ## Version:
