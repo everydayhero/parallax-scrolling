@@ -53,10 +53,8 @@
         state.el.style.backgroundImage = "url('"+src+"')";
 
         // Add variables to state
-        state = {
-          'backgroundWidth': backgroundWidth,
-          'backgroundHeight': backgroundHeight
-        };
+        state.backgroundWidth = backgroundWidth;
+        state.backgroundHeight = backgroundHeight;
 
         // Add variables to params
         params = {
@@ -110,9 +108,6 @@
         }
         yPos = totalOffset * (percentageOfTotalScroll / 100);
       }
-
-      // Apply the background position
-      // obj.style.backgroundPosition = ('0 '+yPos+'px');
 
       return yPos;
     }
