@@ -15,7 +15,7 @@
     }
 
     #banner {
-      margin-top: 200px;
+      margin-top: 300px;
       width: 100%;
       height: 400px;
 
@@ -29,14 +29,14 @@
 
   <script type="text/javascript">
     var parallax = new Parallax();
-    parallax.init("banner", "banner.jpg");
+    parallax.init("banner", "banner.jpg", "up");
 
     var el = document.getElementById("banner");
 
-    window.addEventListener('onscroll', function() {
+    window.addEventListener('scroll', function() {
       el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
     });
-    window.addEventListener('onresize', function() {
+    window.addEventListener('resize', function() {
       el.style.backgroundPosition = ('0 '+parallax.resize()+'px');
     });
   </script>

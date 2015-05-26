@@ -8,12 +8,10 @@ Vanilla JS parallax scrolling function for CSS backgrounds. Will scroll a backgr
 
 ## Params:
 ```
-- elementId (str): The element's ID.
-- background (str): Path to the background image.
-- scrollDirectionX (str): Optional. Set to either "left" or "right" to specify horizontal scroll direction.
-- scrollDirectionY (str): Optional. Set to either "up" or "down" to specify vertical scroll direction.
-- maxOffsetX (int): Optional. Max number of pixels the background can move horizontally. By default it will use all available overflowing pixels. Set this to 0 to disable horizontal scrolling.
-- maxOffsetY (int): Optional. Max number of pixels the background can move vertically. By default it will use all available overflowing pixels. Set this to 0 to disable vertical scrolling.
+- id (str): Required. ID of DOM element.
+- src (str): Required. Source of background image.
+- scrollDir (str): Optional. Scroll direction can be either "down" or "up". Default is "down".
+- maxOffset (int): Optional. Max number of pixels the background can move vertically. By default it will use all available overflowing pixels.
 ```
 
 
@@ -27,30 +25,44 @@ The scroll event on mobile only returns after it stops scrolling. Possible fix: 
 
 
 ## Example Usage:
+View [example.html](example.html) for a demo.
+
+
 HTML
 ```
-<div id="header"></div>
+<script src="parallaxScrolling-1.0.min.js"></script>
+<div id="banner"></div>
 ```
 
 CSS
 ```
-#header {
-  background-size: cover; /* This property is supported. Sick lad. */
+#banner {
+  background-size: cover; /* This property is supported if you want to use it. Sick lad. */
 
-  width: 1024px;
+  /* Set width and height of container to whatever you want. Percentages are supported. */
+  width: 100%;
   height: 400px;
 }
 ```
 
-JS (add this as the last thing on the page)
+JS
 ```
-var parallaxArgs = []; // Required global variable
-parallaxInit('header', 'img/banner.jpg');
+// Config
+var id = "banner"; // (str): Required. ID of DOM element.
+var src = banner.jpg; // (str): Required. Source of background image.
+var scrollDir = "down"; // (str): Optional. Scroll direction can be either "down" or "up". Default is "down".
+var maxOffset = "auto"; // (int): Optional. Max number of pixels the background can move vertically. By default it will use all available overflowing pixels.
 
+// Init
+var parallax = new Parallax();
+parallax.init(id, src, scrollDir, maxOffset);
+var el = document.getElementById(id);
 
-function doParallax() {
-  parallaxScroll('header');
-}
-window.onscroll = doParallax;
-window.onresize = doParallax;
+// Event listeners
+window.addEventListener('scroll', function() {
+  el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
+});
+window.addEventListener('resize', function() {
+  el.style.backgroundPosition = ('0 '+parallax.resize()+'px');
+});
 ```
