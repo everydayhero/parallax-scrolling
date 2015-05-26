@@ -16,29 +16,18 @@
     this.init = function(id, src, scrollDir, maxOffset) {
 
       // Make sure it only fires once
-      if (initialised) {
-        return false;
-      }
+      if (initialised) { return; }
 
       // Set optional params
-      var scrollDir = scrollDir || 'down';
-      var maxOffset = (maxOffset * -1) || 'auto';
-
-      // Setup state variables
-      var el = document.getElementById(id);
-      var w = window;
-      var d = document;
-      var e = d.documentElement;
-      var g = d.getElementsByTagName('body')[0]; // For older browsers
+      scrollDir = scrollDir || 'down';
+      maxOffset = (maxOffset * -1) || 'auto';
 
       // Add variables to state
-      state = {
-        'el': el,
-        'w': w,
-        'd': d,
-        'e': e,
-        'g': g
-      };
+      state.el = document.getElementById(id);
+      state.w = window;
+      state.d = document;
+      state.e = state.d.documentElement;
+      state.g = state.d.getElementsByTagName('body')[0]; // For older browsers
 
       // Create the background image
       var backgroundImg = new Image();
@@ -113,21 +102,13 @@
       if (Object.keys(params).length === 0) {
         return false;
       } else {
-        // Setup state variables
-        var windowHeight = state.w.innerHeight || state.e.clientHeight || state.g.clientHeight;
-        var windowWidth = state.w.innerWidth || state.e.clientWidth || state.g.clientWidth;
-        var containerWidth = state.el.offsetWidth;
-        var containerHeight = state.el.offsetHeight;
-        var containerTop = state.el.offsetTop;
-        var containerBottom = containerTop + containerHeight;
-
         // Add variables to state
-        state.windowHeight = windowHeight;
-        state.windowWidth = windowWidth;
-        state.containerWidth = containerWidth;
-        state.containerHeight = containerHeight;
-        state.containerTop = containerTop;
-        state.containerBottom = containerBottom;
+        state.windowHeight = state.w.innerHeight || state.e.clientHeight || state.g.clientHeight;
+        state.windowWidth = state.w.innerWidth || state.e.clientWidth || state.g.clientWidth;
+        state.containerWidth = state.el.offsetWidth;
+        state.containerHeight = state.el.offsetHeight;
+        state.containerTop = state.el.offsetTop;
+        state.containerBottom = state.containerTop + state.containerHeight;
 
         // Is this image using "cover"? Set the background to the right ratio.
         var style = state.w.getComputedStyle(state.el);
