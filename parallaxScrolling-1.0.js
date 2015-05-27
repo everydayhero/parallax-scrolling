@@ -56,7 +56,10 @@
         };
 
         // Trigger the resize to set all state vars (resize also calls scroll)
-        return self.resize();
+        self.resize();
+
+        // Trigger the load function
+        window.parallaxLoad();
       }
 
       initialised = true;
