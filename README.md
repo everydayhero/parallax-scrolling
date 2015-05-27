@@ -38,11 +38,15 @@ HTML
 CSS
 ```
 #banner {
-  background-size: cover; /* This property is supported if you want to use it. Sick lad. */
+  /* This property is supported if you want to use it. Sick lad. */
+  background-size: cover;
 
   /* Set width and height of container to whatever you want. Percentages are supported. */
   width: 100%;
   height: 400px;
+
+  /* You can also add a subtle transition for extra awesome */
+  transition: background-position 0.05s linear;
 }
 ```
 
