@@ -37,11 +37,25 @@
     function parallaxLoad() {
       el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
     }
+
+    var parallaxScrollEnabled = true;
     window.addEventListener('scroll', function() {
+      if (!parallaxScrollEnabled) { return; }
+
+      parallaxScrollEnabled = false;
       el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
+
+      return setTimeout((function() { parallaxScrollEnabled = true; }), 100);
     });
+
+    var parallaxResizeEnabled = true;
     window.addEventListener('resize', function() {
+      if (!parallaxResizeEnabled) { return; }
+
+      parallaxResizeEnabled = false;
       el.style.backgroundPosition = ('0 '+parallax.resize()+'px');
+
+      return setTimeout((function() { parallaxResizeEnabled = true; }), 100);
     });
   </script>
 </body>
