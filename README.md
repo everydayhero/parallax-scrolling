@@ -50,84 +50,39 @@ CSS
 }
 ```
 
-JS
+JS Example
 ```
-// JS Example
-// -------------------------------------------------------------
 // Config
 var id = "banner"; // (str): Required. ID of DOM element.
 var src = banner.jpg; // (str): Required. Source of background image.
 var scrollDir = "down"; // (str): Optional. Scroll direction can be either "down" or "up". Default is "down".
-var maxOffset = "auto"; // (int): Optional. Max number of pixels the background can move vertically. By default it will use all available overflowing pixels.
-var interval = 100; // (int): Set how often the background position is calculated and applied to the DOM in milliseconds
+var maxOffset = "auto"; // (int): Optional. Max number of pixels the background can move vertically. Default is "auto" - this will use all available overflowing pixels.
 
-// Init
+// Init Parallax
 var parallax = new Parallax();
 parallax.init(id, src, scrollDir, maxOffset);
 var el = document.getElementById(id);
 
-// Event listeners
+// Setup Parallax Functions
 function parallaxLoad() {
   el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
 }
-
-var parallaxScrollEnabled = true;
-window.addEventListener('scroll', function() {
-  if (!parallaxScrollEnabled) { return; }
-
-  parallaxScrollEnabled = false;
+function parallaxScroll() {
   el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
-
-  return setTimeout((function() { parallaxScrollEnabled = true; }), interval);
-});
-
-var parallaxResizeEnabled = true;
-window.addEventListener('resize', function() {
-  if (!parallaxResizeEnabled) { return; }
-
-  parallaxResizeEnabled = false;
+  setTimeout(function() { requestAnimationFrame(parallaxScroll); }, 17); // 60fps
+}
+function parallaxResize() {
   el.style.backgroundPosition = ('0 '+parallax.resize()+'px');
-
-  return setTimeout((function() { parallaxResizeEnabled = true; }), interval);
-});
-
-
-
-// jQuery Example
-// -------------------------------------------------------------
-// Config
-var id = "banner"; // (str): Required. ID of DOM element.
-var src = banner.jpg; // (str): Required. Source of background image.
-var scrollDir = "down"; // (str): Optional. Scroll direction can be either "down" or "up". Default is "down".
-var maxOffset = "auto"; // (int): Optional. Max number of pixels the background can move vertically. By default it will use all available overflowing pixels.
-var interval = 100; // (int): Set how often the background position is calculated and applied to the DOM in milliseconds
-
-// Init
-var parallax = new Parallax();
-parallax.init(id, src, scrollDir, maxOffset);
-
-// Event listeners
-function parallaxLoad() {
-  $('#'+id).css('backgroundPosition', ('0 '+parallaxHeader.scroll()+'px'));
+  setTimeout(function() { requestAnimationFrame(parallaxResize); }, 200); // 5fps
 }
 
-var parallaxScrollEnabled = true;
-$(window).scroll(function() {
-  if (!parallaxScrollEnabled) { return; }
-
-  parallaxScrollEnabled = false;
-  $('#'+id).css('backgroundPosition', ('0 '+parallaxHeader.scroll()+'px'));
-
-  return setTimeout((function() { parallaxScrollEnabled = true; }), interval);
-});
-
-var parallaxResizeEnabled = true;
-$(window).resize(function() {
-  if (!parallaxResizeEnabled) { return; }
-
-  parallaxResizeEnabled = false;
-  $('#'+id).css('backgroundPosition', ('0 '+parallaxHeader.resize()+'px'));
-
-  return setTimeout((function() { parallaxResizeEnabled = true; }), interval);
-});
+// Setup Parallax Events
+if (window.attachEvent) {
+  window.attachEvent('onresize', parallaxResize);
+  window.attachEvent('onscroll', parallaxScroll);
+}
+else if (window.addEventListener) {
+  window.addEventListener('resize', parallaxResize);
+  window.addEventListener('scroll', parallaxScroll);
+}
 ```

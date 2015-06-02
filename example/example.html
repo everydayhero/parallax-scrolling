@@ -29,34 +29,34 @@
   <div id="banner"></div>
 
   <script type="text/javascript">
+    // Init Parallax
     var parallax = new Parallax();
     parallax.init("banner", "banner.jpg", "down");
 
     var el = document.getElementById("banner");
 
+    // Setup Parallax Functions
     function parallaxLoad() {
       el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
     }
-
-    var parallaxScrollEnabled = true;
-    window.addEventListener('scroll', function() {
-      if (!parallaxScrollEnabled) { return; }
-
-      parallaxScrollEnabled = false;
+    function parallaxScroll() {
       el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
-
-      return setTimeout((function() { parallaxScrollEnabled = true; }), 100);
-    });
-
-    var parallaxResizeEnabled = true;
-    window.addEventListener('resize', function() {
-      if (!parallaxResizeEnabled) { return; }
-
-      parallaxResizeEnabled = false;
+      setTimeout(function() { requestAnimationFrame(parallaxScroll); }, 17);
+    }
+    function parallaxResize() {
       el.style.backgroundPosition = ('0 '+parallax.resize()+'px');
+      setTimeout(function() { requestAnimationFrame(parallaxResize); }, 200);
+    }
 
-      return setTimeout((function() { parallaxResizeEnabled = true; }), 100);
-    });
+    // Setup Parallax Events
+    if (window.attachEvent) {
+      window.attachEvent('onresize', parallaxResize);
+      window.attachEvent('onscroll', parallaxScroll);
+    }
+    else if (window.addEventListener) {
+      window.addEventListener('resize', parallaxResize);
+      window.addEventListener('scroll', parallaxScroll);
+    }
   </script>
 </body>
 </html>
