@@ -45,7 +45,7 @@
     }
     function parallaxResize() {
       el.style.backgroundPosition = ('0 '+parallax.resize()+'px');
-      setTimeout(function() { requestAnimationFrame(parallaxResize); }, 200); // 5fps
+      debounce(function() { requestAnimationFrame(parallaxResize); }, 200); // 5fps
     }
 
     // Setup Parallax Events
