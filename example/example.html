@@ -41,11 +41,11 @@
     }
     function parallaxScroll() {
       el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
-      setTimeout(function() { requestAnimationFrame(parallaxScroll); }, 17);
+      requestAnimationFrame(parallaxScroll);
     }
     function parallaxResize() {
       el.style.backgroundPosition = ('0 '+parallax.resize()+'px');
-      setTimeout(function() { requestAnimationFrame(parallaxResize); }, 200);
+      setTimeout(function() { requestAnimationFrame(parallaxResize); }, 200); // 5fps
     }
 
     // Setup Parallax Events

@@ -69,7 +69,7 @@ function parallaxLoad() {
 }
 function parallaxScroll() {
   el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
-  setTimeout(function() { requestAnimationFrame(parallaxScroll); }, 17); // 60fps
+  requestAnimationFrame(parallaxScroll);
 }
 function parallaxResize() {
   el.style.backgroundPosition = ('0 '+parallax.resize()+'px');
