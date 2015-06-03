@@ -50,54 +50,39 @@ CSS
 }
 ```
 
-JS
+JS Example
 ```
-// Pure JS Example
-// -------------------------------------------------------------
 // Config
 var id = "banner"; // (str): Required. ID of DOM element.
 var src = banner.jpg; // (str): Required. Source of background image.
 var scrollDir = "down"; // (str): Optional. Scroll direction can be either "down" or "up". Default is "down".
-var maxOffset = "auto"; // (int): Optional. Max number of pixels the background can move vertically. By default it will use all available overflowing pixels.
+var maxOffset = "auto"; // (int): Optional. Max number of pixels the background can move vertically. Default is "auto" - this will use all available overflowing pixels.
 
-// Init
+// Init Parallax
 var parallax = new Parallax();
 parallax.init(id, src, scrollDir, maxOffset);
 var el = document.getElementById(id);
 
-// Event listeners
+// Setup Parallax Functions
 function parallaxLoad() {
-  el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
+  parallaxScroll();
 }
-window.addEventListener('scroll', function() {
-  el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
-});
-window.addEventListener('resize', function() {
+function parallaxScroll() {
+  requestAnimationFrame(function() {
+    el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
+  });
+}
+var parallaxResize = debounce(function() {
   el.style.backgroundPosition = ('0 '+parallax.resize()+'px');
-});
+}, 200); // Limit to 5fps
 
-
-
-// jQuery Example
-// -------------------------------------------------------------
-// Config
-var id = "banner"; // (str): Required. ID of DOM element.
-var src = banner.jpg; // (str): Required. Source of background image.
-var scrollDir = "down"; // (str): Optional. Scroll direction can be either "down" or "up". Default is "down".
-var maxOffset = "auto"; // (int): Optional. Max number of pixels the background can move vertically. By default it will use all available overflowing pixels.
-
-// Init
-var parallax = new Parallax();
-parallax.init(id, src, scrollDir, maxOffset);
-
-// Event listeners
-function parallaxLoad() {
-  $('#'+id).css('backgroundPosition', ('0 '+parallaxHeader.scroll()+'px'));
+// Setup Parallax Events
+if (window.attachEvent) {
+  window.attachEvent('onresize', parallaxResize);
+  window.attachEvent('onscroll', parallaxScroll);
 }
-$(window).scroll(function() {
-  $('#'+id).css('backgroundPosition', ('0 '+parallaxHeader.scroll()+'px'));
-});
-$(window).resize(function() {
-  $('#'+id).css('backgroundPosition', ('0 '+parallaxHeader.resize()+'px'));
-});
+else if (window.addEventListener) {
+  window.addEventListener('resize', parallaxResize);
+  window.addEventListener('scroll', parallaxScroll);
+}
 ```
