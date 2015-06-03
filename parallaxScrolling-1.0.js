@@ -82,7 +82,7 @@
       state.scrollBottom = scrollBottom;
 
       // Calculate the VERTICAL background position
-      var yPos = 0;
+      var yPos = 'auto';
       if (state.scrollBottom >= state.containerTop && state.scrollTop <= state.containerBottom && (params.maxOffset != 0 || params.maxOffset === 'auto')) {
         var percentageOfTotalScroll = 100 - (((state.containerBottom - state.scrollTop) / state.containerBottom) * 100);
 
