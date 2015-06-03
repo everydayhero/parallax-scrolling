@@ -20,8 +20,7 @@ Download and view the example or visit http://d2h3g7rbnequ8a.cloudfront.net/para
 
 
 ## Browser Support:
-IE9+, Chrome, Firefox, Safari, Opera
-(Should support IE8 as well, but this is untested)
+IE8+, Chrome, Firefox, Safari, Opera
 
 
 ## Known Bugs:
