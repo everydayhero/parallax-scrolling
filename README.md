@@ -68,11 +68,17 @@ function parallaxLoad() {
 }
 function parallaxScroll() {
   requestAnimationFrame(function() {
-    el.style.backgroundPosition = ('0 '+parallax.scroll()+'px');
+    var yPos = parallax.scroll();
+    if (yPos != 'auto') {
+      el.style.backgroundPosition = ('0 '+yPos+'px');
+    }
   });
 }
 var parallaxResize = debounce(function() {
-  el.style.backgroundPosition = ('0 '+parallax.resize()+'px');
+  var yPos = parallax.resize();
+  if (yPos != 'auto') {
+    el.style.backgroundPosition = ('0 '+yPos+'px');
+  }
 }, 200); // Limit to 5fps
 
 // Setup Parallax Events
